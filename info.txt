@@ -1,0 +1,46 @@
+Members -> Refers to audience of LMS
+Admins -> Refers to administration of LMS
+Status -> Refers to access level
+Status Label -> Refers to label of status
+
+Admin Workflow
+
+* Requirements --
+1. Needs a central dashboard to view, modify & temporary flag users.
+2. Can search and filter users
+3. Can set status aka access level for users
+4. Can set special status aka special pages for users
+5. Can monitor users heartbeat (active sense) - idea
+6. Can force logout users (active sense)- idea
+7. Can upload Videos (via Bunny CDN API)
+8. Can upload Documents on Server
+9. Can MONITOR all Files downloaded by User
+10. Can MONITOR user video watched progress - idea
+
+* Power --
+1. System can be installed with ease.
+2. Enter Database details and it modifies it as required.
+3. Allows to set files for download or view online.
+4. Status Lock setting(s) | 1 allows for Backward Visibility, 0 Current Visibility of Content
+5. Status Label is the name of Access Label.
+6. Can create Status(es) or even special Status(es) known as External Pages.
+
+
+User Workflow
+
+* Requirements --
+1. Can sign up using a easily available post request.
+2. Can view videos & document by access level given by admin.
+3. Modify self account.
+
+
+* Active Sense --
+A user initiated system that live feeds user data to server & listens for server bans.
+This can be also used to immediately send user back to login screen meanwhile login screen blocks them from entrance due to authorization ban.
+
+* Information Processed [User]:
+Full Name, Email Address, Phone Number, Geolocation (API), Last Logged IP, Created At, Status, Occupation
+
+
+Login Protocol:
+Every single attempt to login must be validated against server despite session existing.
