@@ -69,7 +69,7 @@ while($row = mysqli_fetch_assoc($res)) {
     // Return HTML data here 
 }
 }
-
+}
 // Returns all Files
 
 else {
