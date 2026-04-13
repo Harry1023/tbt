@@ -7,7 +7,7 @@ switch($_SERVER['REQUEST_METHOD']) {
 CASE 'GET':
 
 
-// Filter Record by Status
+// Filter ecord by Status
 
 if(isset($_GET['filter_status'])) {
     if(is_authorized(2) || is_authorized(3)) {
