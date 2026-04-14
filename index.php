@@ -6,25 +6,26 @@
 </head>
 <body>
 
-
+<section class="hero is-fullheight">
+  <div class="hero-body">
 <div class="container is-max-tablet px-5">
 
-<div class="columns is-centered">
 
-<div class="column">
+<div class="block">
+<div class="is-flex is-justify-content-center">
 <figure class="image is-128x128">
   <img class="is-rounded" src="https://bulma.io/assets/images/placeholders/128x128.png" />
 </figure>
 </div>
-
 </div>
 
-<form method="post">
+
+<form method="post" action="api/core/auth.php">
 
 <div class="field">
   <label class="label">Email</label>
   <div class="control">
-    <input class="input" type="email" placeholder="Your Email Address" required>
+    <input class="input" type="email" name="email" placeholder="Your Email Address" required>
   </div>
 </div>
 
@@ -32,19 +33,21 @@
 <div class="field">
   <label class="label">Password</label>
   <div class="control">
-    <input class="input" type="password" placeholder="Enter Password" required>
+    <input class="input" type="password" name="password" placeholder="Enter Password" required>
   </div>
   <p class="help">Default Password for New Accounts is Root</p>
 </div>
 
+<div class="control mt-4">
+  <button type="submit" class="button is-primary is-rounded">Login</button>
+<a class="button is-ghost is-small mt-1">Forgot Password?</a>
 
-
-<div class="control">
-  <button class="button is-primary">Login</button>
 </div>
 </form>
 
 </div>
+</div>
 
+</section>
 </body>
 </html>

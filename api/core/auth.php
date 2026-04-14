@@ -5,8 +5,6 @@ if($_SERVER['REQUEST_METHOD'] !=  "POST") {exit("invalid");}
 
 $usr = $_POST['email'];
 $pwd = $_POST['password'];
-$type = $_POST['type'];
-
 
 
 
@@ -23,6 +21,7 @@ session_start();
 $_SESSION['email'] = $usr;
 $_SESSION['pwd'] = $pwd;
 $_SESSION['role'] = $role;
+$_SESSION['status'] = $status;
 
 switch ($role) {
 
