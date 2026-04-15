@@ -20,7 +20,7 @@
 </div>
 
 
-<form method="post" action="api/core/auth.php">
+<form hx-post="api/core/auth.php" hx-target="#errorAdd" hx-swap="innerHTML">
 
 <div class="field">
   <label class="label">Email</label>
@@ -35,8 +35,10 @@
   <div class="control">
     <input class="input" type="password" name="password" placeholder="Enter Password" required>
   </div>
-  <p class="help">Default Password for New Accounts is Root</p>
+  <p class="help">Default Password for New Accounts is <strong>Root<strong></p>
 </div>
+
+<div id="errorAdd"></div>
 
 <div class="control mt-4">
   <button type="submit" class="button is-primary is-rounded">Login</button>

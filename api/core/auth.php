@@ -49,4 +49,5 @@ break;
 
 
 }
+else {exit("<div class='notification is-danger'>Please check your Credentials and try again!</div>");}
 ?>
