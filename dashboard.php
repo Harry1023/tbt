@@ -186,17 +186,17 @@ video.addEventListener("seeking", () => {
 function sendSegment(start, end) {
   if (end - start < 1) return; // ignore tiny segments
 
-  // fetch("/api/progress", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json"
-  //   },
-  //   body: JSON.stringify({
-  //     video_id: 1,
-  //     start: start,
-  //     end: end
-  //   })
-  // });
+   fetch("api/activesense/track_progress.php", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      video_id: 1,
+      start: start,
+      end: end
+    })
+  });
 
   console.log("Sent segment:", start, end);
 }

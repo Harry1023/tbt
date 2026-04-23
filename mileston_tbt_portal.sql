@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 15, 2026 at 03:54 PM
+-- Generation Time: Apr 23, 2026 at 03:52 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.30
 
@@ -43,6 +43,26 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `status`, `role`, `password`) VALUES
 (1, 'Steven Raj', 'steven.raj@euromets.com', '2', 1, '(Donkey100#)');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `video_logs`
+--
+
+CREATE TABLE `video_logs` (
+  `id` int NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `video_id` varchar(255) NOT NULL,
+  `watched_ranges` json NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `video_logs`
+--
+
+INSERT INTO `video_logs` (`id`, `email`, `video_id`, `watched_ranges`) VALUES
+(1, 'steven.raj@euromets.com', '1', '[[0.033288, 2.380712], [31.374813, 33.166509], [88.993967, 129.419496], [251.590485, 254.203], [254.731028, 265.959626]]');
+
 --
 -- Indexes for dumped tables
 --
@@ -55,6 +75,13 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `video_logs`
+--
+ALTER TABLE `video_logs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`,`video_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -63,6 +90,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `video_logs`
+--
+ALTER TABLE `video_logs`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
