@@ -141,7 +141,13 @@ if (Hls.isSupported()) {
 
 let segmentStart = null;
 let lastTime = 0;
+let duration = 0;
 let sendInterval = 10; // seconds
+
+
+video.addEventListener("loadedmetadata", () => {
+duration = video.duration;
+});
 
 // start tracking when play starts
 video.addEventListener("play", () => {
@@ -193,6 +199,7 @@ function sendSegment(start, end) {
     },
     body: JSON.stringify({
       video_id: 1,
+      duration: duration,
       start: start,
       end: end
     })

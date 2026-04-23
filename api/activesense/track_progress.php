@@ -8,6 +8,7 @@ $userId = $_SESSION['email']; // from auth
 $videoId = $data['video_id'];
 $newStart = (float)$data['start'];
 $newEnd = (float)$data['end'];
+$duration = (float)$data['duration'];
 $existingRanges = [];
 
 // fetch existing ranges from DB
@@ -19,8 +20,8 @@ if($row = mysqli_fetch_assoc($res)) {
   $existingRanges = json_decode($row['watched_ranges'], true) ?? [];
 }
   $updatedRanges = mergeRanges($existingRanges, $newStart, $newEnd);
-  $newRecordStmt = mysqli_prepare(con, "INSERT INTO video_logs (email, video_id, watched_ranges) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE watched_ranges = ?");
-  mysqli_stmt_bind_param($newRecordStmt, "siss", $userId, $videoId, $updatedRanges, $updatedRanges);
+  $newRecordStmt = mysqli_prepare(con, "INSERT INTO video_logs (email, video_id, watched_ranges, duration) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE watched_ranges = ?");
+  mysqli_stmt_bind_param($newRecordStmt, "sisss", $userId, $videoId, $updatedRanges, $duration, $updatedRanges);
   mysqli_stmt_execute($newRecordStmt);
 
 
