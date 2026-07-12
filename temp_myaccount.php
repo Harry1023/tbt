@@ -7,18 +7,59 @@
 
 
 <body>
-<div class="modal is-active">
-  <div class="modal-background"></div>
 
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Modify Account</p>
-    </header>
-    <section class="modal-card-body">
-    <?php if(isset($_GET['success'])) {echo "<div class='notification'>Your updates were applied to the account.</div>";} else if(isset($_GET['fail'])) {echo "<div class='notification is-danger'>Your updates were not applied, try again!</div>";}; ?>
-    
-     
-     
+
+<div class="columns">
+
+<?php include "aside.php"; ?>
+
+<div class="column">
+
+
+<?php include "nav.php"; ?>
+
+
+<br>
+<div class="container is-fluid">
+
+
+<div class="columns">
+<div class="column is-half is-align-content-center" style="">
+
+<div class="box">
+  <div class="tag">Profile</div>
+<div class="is-flex mt-2">
+<figure class="image is-48x48 is-left">
+  <img class="is-rounded" src="https://bulma.io/assets/images/placeholders/128x128.png" />
+</figure>
+<div class="is-right ml-4">
+ 
+<p><strong>Muhammad Harris</strong></p>
+<small>sensorsoffline@gmail.com</small></div>
+
+</div>
+
+
+<br>
+<div class="table-container">
+  <table class="table is-fullwidth">
+    <tr><td><small>Phone</small></td><td><small>+923161075498</small></td></tr>
+    <tr><td><small>Occupation</small></td><td><small>Commercial Director</small></td></tr>
+    <tr><td><small>Address</small></td><td><small>House R143, Block A, Bagh E Malir, Karachi</small></td></tr>
+    <tr><td><small>Password</small></td><td><small><div class="tag">Last Updated 23/04/2026</div></small></td></tr>
+
+  </table>
+</div>
+</div>
+
+</div>
+
+<div class="column">
+
+
+
+
+  
      <form method="post">
      <div class="field">
   <label class="label">Name</label>
@@ -70,7 +111,12 @@
   
      
      
-     
+<div class="field">
+  <label class="label">Occupation</label>
+  <div class="control">
+    <input class="input" type="text" placeholder="e.g IT Support">
+  </div>
+</div>       
      
     </section>
     <footer class="modal-card-foot">
@@ -79,7 +125,23 @@
         <button class="button" type="reset">Cancel</button>
       </div>
     </footer></form>
-  </div>
+
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+</div>
+
+
+
+</div> <!-- Single Column End --->
 </div>
 
 

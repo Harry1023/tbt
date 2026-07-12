@@ -1,5 +1,7 @@
 <?php 
-require __DIR__ . "/functions.php"; 
+session_start();
+require __DIR__ . "/core/functions.php"; 
+include __DIR__ . "/external.php";  // File has access to External APIs
 
 
 switch($_SERVER['REQUEST_METHOD']) {
@@ -13,7 +15,7 @@ if(isset($_GET['filter_status'])) {
     if(is_authorized(2) || is_authorized(3)) {
         $term = $_GET['filter_status'];
 
-        $sql = mysqli_prepare(con, "SELECT * FROM `files` WHERE status = ?");
+        $sql = mysqli_prepare(con, "SELECT * FROM `content` WHERE status = ?");
         mysqli_stmt_bind_param($sql, "s", $term);
         mysqli_stmt_execute($sql);
         $res = mysqli_stmt_get_result($sql);
@@ -36,7 +38,7 @@ if(isset($_GET['search'])) {
     if(is_authorized(2) || is_authorized(3)) {
         $term = $_GET['search'];
 
-        $sql = mysqli_prepare(con, "SELECT * FROM `files` WHERE (title LIKE ?)");
+        $sql = mysqli_prepare(con, "SELECT * FROM `content` WHERE (title LIKE ?)");
         mysqli_stmt_bind_param($sql, "s", $term);
         mysqli_stmt_execute($sql);
         $res = mysqli_stmt_get_result($sql);
@@ -51,40 +53,78 @@ if(isset($_GET['search'])) {
 
 
 
-// Returns single File from ID
+// Returns VIEW from Content
 
-if(isset($_GET['id'])) {
+if(isset($_GET['view_content'])) {
 
 // Everybody can access all files
 if(is_authorized(1) || is_authorized(2) || is_authorized(3)) {
-    $param = $_GET['id'];
+    $param = $_SESSION['status'];
 
 
-$sql = mysqli_prepare(con,"SELECT * FROM files WHERE id = ?");
+$sql = mysqli_prepare(con,"SELECT * FROM `content` WHERE file_status = ?");
 mysqli_stmt_bind_param($sql, "i", $param);
 mysqli_stmt_execute($sql);
 $res = mysqli_stmt_get_result($sql);
 
 while($row = mysqli_fetch_assoc($res)) {
     // Return HTML data here 
-}
-}
-}
-// Returns all Files
+$file_id  = $row['id'];
+$file_title = $row['title'];
+$file_desc = $row['description'];
+$file_uid = $row['uid'];
 
-else {
 
-if(is_authorized(1) || is_authorized(2) || is_authorized(3)) {
-$sql = mysqli_prepare(con, "SELECT * FROM files");
-mysqli_stmt_execute($sql);
-$res = mysqli_stmt_get_result($sql);
+    // Two Different Content Types DOCUMENTs & VIDEOs
 
-while($row = mysqli_fetch_assoc($res)) {
-// Return HTML data here
+    if($row['type'] == "doc") {
+    echo "
+    <div class='box'>
+  <article class='media'>
+    <div class='media-left'>
+      <figure class='image is-64x64'>
+        <img class='' src='https://bulma.io/assets/images/placeholders/128x128.png' alt='Image' />
+      </figure>
+    </div>
+    <div class='media-content'>
+      <div class='content'>
+        <p>
+          <strong>$file_title</strong> <br><small>@thebullstrading</small>
+        </p>
+      </div>
+
+      <span class='tag button'>Download</span>
+
+
+
+    </div>
+  </article>
+</div>
+";
+
+
+    }
+    $apiBunny_pull_zone = "https://vz-d5dd88c0-b28.b-cdn.net";
+    $apiBunny_hrefwithZone = $apiBunny_pull_zone . '/' . $file_uid . '/playlist.m3u8';
+
+$temp = sign_bcdn_url(
+    $apiBunny_hrefwithZone,
+    '62674427-5592-4d34-96e4-298271767195',
+    3600,                   // expiration_time
+    '',                     // user_ip
+    true,                   // is_directory
+    "/{$file_uid}/",     // path_allowed
+);
+
+    if($row['type'] == "video") {
+        echo "<div class='container'><video id='video' class='bunny-video container' data-video-id='$file_id' data-video-guid='$temp' controls></video><br><div class='block is-grey'><p class='is-size-4 is-bold mt-2'><strong>$file_title</strong></p><p>$file_desc</p></div></div>";
+    }
+
+
 }
 }
-
 }
+
 
 break;
 

@@ -10,6 +10,4 @@ function includeSnippet($snippet) {
  echo $snippet;
 }
 
-
-
 ?>

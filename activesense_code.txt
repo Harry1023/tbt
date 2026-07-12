@@ -1,57 +1,15 @@
-<!DOCTYPE html>
-<head>
-<?php include "head.php"; 
-includeSnippet("<script src='https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.14/hls.min.js' integrity='sha512-js37JxjD6gtmJ3N2Qzl9vQm4wcmTilFffk0nTSKzgr3p6aitg73LR205203wTzCCC/NZYO2TAxSa0Lr2VMLQvQ==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>");?>
-</head>
-<body>
-
-<div class="columns">
-
-<?php include "aside.php"; ?>
-
-<div class="column">
-
-
-<?php include "nav.php"; ?>
-
-
-<br>
-<div class="container is-fluid" hx-get="api/content.php?view_content" hx-trigger="load" hx-on::after-swap="initVideos()">
-
-
-
-
-
-</div>
-
-
-
-</div> <!-- Single Column End --->
-</div>
-
-
-</body>
-
-
 <script>
-  function initVideos() {
-setTimeout(() => {
+const video = document.getElementById('video');
+const src = "https://test-streams.mux.dev/x36xhzz/url_6/193039199_mp4_h264_aac_hq_7.m3u8";
 
-  console.log(document.querySelectorAll('.bunny-video').length);
-  const video = document.getElementById('video');
-document.querySelectorAll('.bunny-video').forEach(video => {
-    const guid = video.dataset.videoGuid; // Bunny Video ID
-    const phpID = video.dataset.videoId; // System Registered Video ID
-// For Debugging: console.log(guid); console.log(phpID);
-    const hls = new Hls();
-  hls.loadSource(guid);
-   hls.attachMedia(video);
-runActivesense(phpID);
-});
+if (Hls.isSupported()) {
+  const hls = new Hls();
+  hls.loadSource(src);
+  hls.attachMedia(video);
+} else {
+  video.src = src; // Safari
+}
 
-
- }, 100);
-  }
 
 // var lastTime;
 // video.addEventListener("loadedmetadata", () => {
@@ -77,13 +35,21 @@ runActivesense(phpID);
 
 
 
-function runActivesense(phpID) {
-console.log("Activense is Tracking This Video");
-const video = document.getElementById('video');
+
+
+
+
+
+
+
+
+
+
 let segmentStart = null;
 let lastTime = 0;
 let duration = 0;
 let sendInterval = 10; // seconds
+
 
 video.addEventListener("loadedmetadata", () => {
 duration = video.duration;
@@ -129,7 +95,6 @@ video.addEventListener("seeking", () => {
   segmentStart = video.currentTime;
 });
 
-
 function sendSegment(start, end) {
   if (end - start < 1) return; // ignore tiny segments
 
@@ -139,7 +104,7 @@ function sendSegment(start, end) {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      video_id: phpID,
+      video_id: 1,
       duration: duration,
       start: start,
       end: end
@@ -148,7 +113,5 @@ function sendSegment(start, end) {
 
   console.log("Sent segment:", start, end);
 }
-}
-</script>
 
-</html>
+</script>

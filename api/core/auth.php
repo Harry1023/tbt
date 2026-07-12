@@ -15,7 +15,7 @@ $result = mysqli_stmt_get_result($sql);
 
 if($row = mysqli_fetch_assoc($result)) {
 $role = $row['role'];
-$status = $row['status'];
+$status = $row['status']; // Can be a number or link
 
 session_start();
 $_SESSION['email'] = $usr;

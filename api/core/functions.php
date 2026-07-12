@@ -55,4 +55,5 @@ function is_safeInput($input, $type = 'text') {
     }
 }
 
+
 ?>
