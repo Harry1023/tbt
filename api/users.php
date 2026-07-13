@@ -1,5 +1,6 @@
 <?php 
-require __DIR__ . "/functions.php"; 
+session_start();
+require __DIR__ . "/core/functions.php"; 
 
 
 switch($_SERVER['REQUEST_METHOD']) {
@@ -146,6 +147,7 @@ $valueTypes = [];
 
 if(isset($_POST['name']) && is_safeInput($_POST['name'], 'name')) {$table_posted['name'] = $_POST['name'];}
 if(isset($_POST['geolocation']) && is_safeInput($_POST['geolocation'])) {$table_posted['geolocation'] = $_POST['geolocation'];}
+if(isset($_POST['address']) && is_safeInput($_POST['address'])) {$table_posted['address'] = $_POST['address'];}
 if(isset($_POST['password']) && is_safeInput($_POST['password'], 'password')) {$table_posted['password'] = $_POST['password'];}
 if(isset($_POST['occupation']) && is_safeInput($_POST['occupation'])) {$table_posted['occupation'] = $_POST['occupation'];}
 if(isset($_POST['phone']) && is_safeInput($_POST['phone'], 'phone')) {$table_posted['phone'] = $_POST['phone'];}
@@ -160,7 +162,7 @@ foreach($table_posted as $key => $value) {
 
     // PHP Spread Operator ... Used Cause PHP converts Array Values into Comma Seperated Arguments BUT only works inside Functions
     $commaRemoveTypes = implode("",$valueTypes); 
-    $sql = mysqli_prepare(con, "UPDATE users SET " . implode(",",$valueName) . " WHERE email = $usr");
+    $sql = mysqli_prepare(con, "UPDATE users SET " . implode(",",$valueName) . " WHERE email = '$usr'");
     mysqli_stmt_bind_param($sql, $commaRemoveTypes, ...$valueData);
     mysqli_stmt_execute($sql);
 

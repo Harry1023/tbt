@@ -60,11 +60,11 @@
 
 
   
-     <form method="post">
+     <form method="post" hx-post="api/users.php">
      <div class="field">
   <label class="label">Name</label>
   <div class="control">
-    <input class="input" name="fieldName" type="text" placeholder="e.g Alex Smith">
+    <input class="input" name="name" type="text" placeholder="e.g Alex Smith">
   </div>
 </div>
  
@@ -74,7 +74,7 @@
  <div class="field">
   <label class="label">Phone No</label>
   <div class="control">
-    <input class="input" name="fieldPhone" inputmode="numeric" type="phone" placeholder="+1 (641) 480 72921">
+    <input class="input" name="phone" inputmode="numeric" type="phone" placeholder="+1 (641) 480 72921">
   </div>
 </div> 
 </div>
@@ -97,15 +97,15 @@
 <div class="field">
   <label class="label">Street Address</label>
   <div class="control">
-    <input class="input" type="text" placeholder="Enter Street Address">
+    <input class="input" name="address" type="text" placeholder="Enter Street Address">
   </div>
 </div>  
  
      
 <div class="field">
-  <label class="label">Password</label>
+  <label class="label">Change Password</label>
   <div class="control">
-    <input class="input" minlength="8" name="fieldPass" type="password" placeholder="Enter a Strong Password">
+    <input class="input" minlength="8" name="password" type="password" placeholder="Enter a Strong Password">
   </div>
 </div>     
   
@@ -114,14 +114,14 @@
 <div class="field">
   <label class="label">Occupation</label>
   <div class="control">
-    <input class="input" type="text" placeholder="e.g IT Support">
+    <input class="input" name="occupation" type="text" placeholder="e.g IT Support">
   </div>
 </div>       
      
     </section>
     <footer class="modal-card-foot">
       <div class="buttons">
-        <button name="confirmButton" class="button is-success" type="submit">Save changes</button>
+        <button name="update_user" class="button is-success" type="submit">Save changes</button>
         <button class="button" type="reset">Cancel</button>
       </div>
     </footer></form>

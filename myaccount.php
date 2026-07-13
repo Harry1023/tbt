@@ -62,7 +62,7 @@
  
      
 <div class="field">
-  <label class="label">Password</label>
+  <label class="label">Change Password</label>
   <div class="control">
     <input class="input" minlength="8" name="fieldPass" type="password" placeholder="Enter a Strong Password">
   </div>
