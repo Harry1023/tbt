@@ -30,12 +30,12 @@
   <div class="tag">Profile</div>
 <div class="is-flex mt-2">
 <figure class="image is-48x48 is-left">
-  <img class="is-rounded" src="https://bulma.io/assets/images/placeholders/128x128.png" />
+  <img class="is-rounded" src="<?php echo $_SESSION['pfp']; ?>" />
 </figure>
 <div class="is-right ml-4">
  
-<p><strong>Muhammad Harris</strong></p>
-<small>sensorsoffline@gmail.com</small></div>
+<p><strong><?php echo $_SESSION['name']; ?></strong></p>
+<small><?php echo $_SESSION['email']; ?></small></div>
 
 </div>
 
@@ -43,11 +43,12 @@
 <br>
 <div class="table-container">
   <table class="table is-fullwidth">
+    <tbody hx-get="api/users.php?id=<?php echo $_SESSION['id']; ?>" hx-trigger="load, every 2s" hx-swap="innerHTML">
     <tr><td><small>Phone</small></td><td><small>+923161075498</small></td></tr>
     <tr><td><small>Occupation</small></td><td><small>Commercial Director</small></td></tr>
     <tr><td><small>Address</small></td><td><small>House R143, Block A, Bagh E Malir, Karachi</small></td></tr>
     <tr><td><small>Password</small></td><td><small><div class="tag">Last Updated 23/04/2026</div></small></td></tr>
-
+</tbody>
   </table>
 </div>
 </div>
@@ -60,11 +61,11 @@
 
 
   
-     <form method="post" hx-post="api/users.php">
+     <form hx-post="api/users.php" hx-swap="beforebegin">
      <div class="field">
   <label class="label">Name</label>
   <div class="control">
-    <input class="input" name="name" type="text" placeholder="e.g Alex Smith">
+    <input class="input" name="name" type="text" placeholder="<?php echo $_SESSION['name']; ?>">
   </div>
 </div>
  
@@ -116,7 +117,9 @@
   <div class="control">
     <input class="input" name="occupation" type="text" placeholder="e.g IT Support">
   </div>
-</div>       
+</div>
+
+
      
     </section>
     <footer class="modal-card-foot">

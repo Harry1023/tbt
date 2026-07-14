@@ -73,7 +73,18 @@ mysqli_stmt_execute($sql);
 $res = mysqli_stmt_get_result($sql);
 
 while($row = mysqli_fetch_assoc($res)) {
-    // Return HTML data here 
+    
+// Returning Self Data for Users  
+    if(is_authorized(1)) {
+echo "
+ <tr><td><small>Phone</small></td><td><small>{$row['phone']}</small></td></tr>
+    <tr><td><small>Occupation</small></td><td><small>{$row['occupation']}</small></td></tr>
+    <tr><td><small>Address</small></td><td><small>{$row['address']}</small></td></tr>
+    <tr><td><small>Password</small></td><td><small><div class='tag'>Last Updated {$row['pwd_timestamp']}</div></small></td></tr>
+";}
+
+
+
 }
 }
 
@@ -153,6 +164,15 @@ if(isset($_POST['occupation']) && is_safeInput($_POST['occupation'])) {$table_po
 if(isset($_POST['phone']) && is_safeInput($_POST['phone'], 'phone')) {$table_posted['phone'] = $_POST['phone'];}
 if(isset($_POST['status']) && is_safeInput($_POST['status'])) {$table_posted['status'] = $_POST['status'];}
 
+
+if(isset($table_posted['password'])) {
+    $timestamp = timestamp();
+    $sql_timestamp_update = mysqli_prepare(con, "UPDATE users SET pwd_timestamp = ? WHERE email = '$usr'");
+    mysqli_stmt_bind_param($sql_timestamp_update, 's', $timestamp); 
+    mysqli_stmt_execute($sql_timestamp_update);
+}
+
+
 // Fields that pass the check are broken into 3 Arrays
 foreach($table_posted as $key => $value) {
     $valueName[] = "$key = ?"; // Contains Field Name
@@ -165,6 +185,9 @@ foreach($table_posted as $key => $value) {
     $sql = mysqli_prepare(con, "UPDATE users SET " . implode(",",$valueName) . " WHERE email = '$usr'");
     mysqli_stmt_bind_param($sql, $commaRemoveTypes, ...$valueData);
     mysqli_stmt_execute($sql);
+
+    if(mysqli_stmt_execute($sql)) {issue_notification("primary", "Your profile was updated!");}
+    else {issue_notification("primary", "Unfortunately, changes could not be made!");}
 
 }
 

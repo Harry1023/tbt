@@ -4,11 +4,48 @@ define('BASE_PATH', __DIR__);
 
 
 // Globals
-
+global $date_seperator;
 
 
 // Requires
 require(BASE_PATH . '/con_db.php');
+
+
+// Returns System Configuration
+function get_configuration() {
+    $sql = mysqli_prepare(con, "SELECT * FROM `configuration`");
+    mysqli_stmt_execute($sql);
+    $result = mysqli_stmt_get_result($sql);
+
+    $config_list = [];
+    while($row = mysqli_fetch_assoc($result)) {
+        $config_list[$row['name']] = $row['value'];
+    }
+return $config_list;
+    }
+
+
+// Now Returning
+$config = get_configuration();
+$date_seperator = $config['date_seperator'];
+$timezone = $config['timezone'];
+
+
+
+
+date_default_timezone_set($config['timezone']);
+
+
+function timestamp() {
+    global $date_seperator;
+  return date("Y" . $date_seperator . "m" . $date_seperator . "d");
+}
+
+
+/*
+* Checks User Authorization against Mentioned Role
+* This Check will Grant All Permission(s) to a User with Higher Role
+*/
 
 function is_authorized($role) {
     $usr = $_SESSION['email'];
@@ -22,6 +59,8 @@ function is_authorized($role) {
     return mysqli_fetch_assoc($result) ? true : false;
 }
 
+
+// Check if User Already Exists
 function user_exists($usr) {
     $sql = mysqli_prepare(con, "SELECT * FROM `users` WHERE email = ?");
     mysqli_stmt_bind_param($sql, "s", $usr);
@@ -31,7 +70,7 @@ function user_exists($usr) {
 }
 
 
-
+// Checks if User Input is Safe against mentioned type(s)
 function is_safeInput($input, $type = 'text') {
 
     // block any HTML/PHP tags
@@ -53,6 +92,15 @@ function is_safeInput($input, $type = 'text') {
         default:
             return preg_match("/^[a-zA-Z0-9\s,.!?'-]+$/", $input);
     }
+}
+
+
+function issue_notification($type, $msg) {
+
+echo "<div class='notification $type'>
+ $msg
+</div>";
+
 }
 
 

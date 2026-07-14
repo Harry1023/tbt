@@ -14,10 +14,16 @@ mysqli_stmt_execute($sql);
 $result = mysqli_stmt_get_result($sql);
 
 if($row = mysqli_fetch_assoc($result)) {
+$id = $row['id'];
+$profile_photo = $row['pfp'];    
+$name = $row['name'];
 $role = $row['role'];
 $status = $row['status']; // Can be a number or link
 
 session_start();
+$_SESSION['id'] = $id;
+$_SESSION['pfp'] = $profile_photo;
+$_SESSION['name'] = $name;
 $_SESSION['email'] = $usr;
 $_SESSION['pwd'] = $pwd;
 $_SESSION['role'] = $role;
