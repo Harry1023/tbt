@@ -32,16 +32,19 @@ $timezone = $config['timezone'];
 
 
 
-
+// Set Default Timezone from Configuration
 date_default_timezone_set($config['timezone']);
 
 
+// Returns Timestamp
 function timestamp() {
     global $date_seperator;
-  return date("Y" . $date_seperator . "m" . $date_seperator . "d");
+  return date("d" . $date_seperator . "m" . $date_seperator . "Y");
 }
 
-
+$timestamp = timestamp();
+echo $timezone;
+echo $timestamp;
 /*
 * Checks User Authorization against Mentioned Role
 * This Check will Grant All Permission(s) to a User with Higher Role
@@ -60,7 +63,7 @@ function is_authorized($role) {
 }
 
 
-// Check if User Already Exists
+// Checks if User Already Exists
 function user_exists($usr) {
     $sql = mysqli_prepare(con, "SELECT * FROM `users` WHERE email = ?");
     mysqli_stmt_bind_param($sql, "s", $usr);
@@ -94,13 +97,28 @@ function is_safeInput($input, $type = 'text') {
     }
 }
 
-
+// Issues Notifications
 function issue_notification($type, $msg) {
 
 echo "<div class='notification $type'>
  $msg
 </div>";
 
+}
+
+
+
+// Log Out
+function logout($reason) {
+    session_destroy();
+    echo "
+    <script>
+    window.location = '/';
+    console.log('You were logged out');
+    </script>
+    ";
+
+    exit;
 }
 
 
