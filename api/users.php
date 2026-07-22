@@ -7,6 +7,14 @@ switch($_SERVER['REQUEST_METHOD']) {
 
 CASE 'GET':
 
+// Logout Request
+
+if(isset($_GET['logout'])) {
+    logout("User Requested Logout Action");
+}
+
+
+
 
 // Filter Record by Status
 

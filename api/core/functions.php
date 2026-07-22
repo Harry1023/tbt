@@ -43,8 +43,8 @@ function timestamp() {
 }
 
 $timestamp = timestamp();
-echo $timezone;
-echo $timestamp;
+
+
 /*
 * Checks User Authorization against Mentioned Role
 * This Check will Grant All Permission(s) to a User with Higher Role
@@ -100,9 +100,20 @@ function is_safeInput($input, $type = 'text') {
 // Issues Notifications
 function issue_notification($type, $msg) {
 
-echo "<div class='notification $type'>
+$notification_id = uniqid('notification_');
+
+echo "<div id='$notification_id' class='notification $type'>
  $msg
 </div>";
+
+echo "<script>$(function () {
+    $('#$notification_id').each(function () {
+        $(this).delay(3000).slideUp(400, function () {
+            $(this).remove();
+        });
+    });
+});</script>";
+;
 
 }
 

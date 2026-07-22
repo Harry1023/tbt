@@ -43,12 +43,7 @@
 <br>
 <div class="table-container">
   <table class="table is-fullwidth">
-    <tbody hx-get="api/users.php?id=<?php echo $_SESSION['id']; ?>" hx-trigger="load, every 2s" hx-swap="innerHTML">
-    <tr><td><small>Phone</small></td><td><small>+923161075498</small></td></tr>
-    <tr><td><small>Occupation</small></td><td><small>Commercial Director</small></td></tr>
-    <tr><td><small>Address</small></td><td><small>House R143, Block A, Bagh E Malir, Karachi</small></td></tr>
-    <tr><td><small>Password</small></td><td><small><div class="tag">Last Updated 23/04/2026</div></small></td></tr>
-</tbody>
+    <tbody hx-get="api/users.php?id=<?php echo $_SESSION['id']; ?>" hx-trigger="load, every 2s" hx-swap="innerHTML"></tbody>
   </table>
 </div>
 </div>
