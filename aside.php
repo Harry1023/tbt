@@ -1,4 +1,4 @@
-<div class="column is-hidden-mobile is-one-quarter has-background-white" style="border-right: 1px solid rgba(0,0,0,0.05); height: 100vh;">
+<div class="column is-hidden-mobile is-one-quarter" style="border-right: 1px solid rgba(0,0,0,0.05); height: 100vh;">
 
 
 <div class="block mt-4">
