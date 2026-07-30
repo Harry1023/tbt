@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <head>
-<?php include "head.php"; 
+<?php include "head.php";
 includeSnippet("<script src='https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.14/hls.min.js' integrity='sha512-js37JxjD6gtmJ3N2Qzl9vQm4wcmTilFffk0nTSKzgr3p6aitg73LR205203wTzCCC/NZYO2TAxSa0Lr2VMLQvQ==' crossorigin='anonymous' referrerpolicy='no-referrer'></script>");?>
 </head>
 <body>
-
 <div class="columns">
 
 <?php include "aside.php"; ?>
@@ -23,10 +22,10 @@ includeSnippet("<script src='https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.1
   <thead>
     <tr>
       <th><abbr title="Position">Pos</abbr></th>
-      <th>Team</th>
-      <th><abbr title="Played">Pld</abbr></th>
-      <th><abbr title="Won">W</abbr></th>
-      <th><abbr title="Drawn">D</abbr></th>
+      <th>Full Name</th>
+      <th><abbr title="Played">Email</abbr></th>
+      <th>Phone</th>
+      <th><abbr title="Drawn" hx-get="../api/settings.php?configuration=unit_label" hx-trigger="load"></abbr></th>
       <th><abbr title="Lost">L</abbr></th>
       <th><abbr title="Goals for">GF</abbr></th>
       <th><abbr title="Goals against">GA</abbr></th>
