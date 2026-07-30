@@ -28,7 +28,6 @@ $_SESSION['email'] = $usr;
 $_SESSION['pwd'] = $pwd;
 $_SESSION['role'] = $role;
 $_SESSION['status'] = $status;
-$_SESSION['preference_theme'] = $row['preference_theme'];
 
 switch ($role) {
 

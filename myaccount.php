@@ -115,7 +115,6 @@
 </div>
 
 
-     
     </section>
     <footer class="modal-card-foot">
       <div class="buttons">
