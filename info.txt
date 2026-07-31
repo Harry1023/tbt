@@ -21,7 +21,7 @@ Admin Workflow
 1. System can be installed with ease.
 2. Enter Database details and it modifies it as required.
 3. Allows to set files for download or view online.
-4. Status Lock setting(s) | 1 allows for Backward Visibility, 0 Current Visibility of Content
+4. Status Lock setting(s) | 1 allows for Backward Visibility, 0 Current Visibility of Content (Review Mode)
 5. Status Label is the name of Access Label.
 6. Can create Status(es) or even special Status(es) known as External Pages.
 

@@ -9,10 +9,10 @@
     <li><a>Notifications</a></li>
     <li><a>Assignments</a></li>
   </ul>
-  <p class="menu-label">Account</p>
+  <p class="menu-label">Advanced</p>
   <ul class="menu-list">
-    <li><a href="myaccount">Manage Account</a></li>
-    <li><a href="request-digital-certificate">Request Digital Certificate</a></li>
+    <li><a href="user-roles">User Roles</a></li>
+    <li><a href="control-panel">Settings</a></li>
   </ul>
 
 

@@ -14,7 +14,7 @@ CASE 'GET':
 */
 
 $configuration_requested = $_GET['configuration'];
-$configuration_disallowed = ["bunny_pullzone", "bunny_cdntoken", "bunny_accesskey"];
+$configuration_disallowed = ["bunny_cdntoken", "bunny_accesskey"];
 
 if(!in_array($configuration_requested, $configuration_disallowed, true)) {
 echo $config[$configuration_requested];

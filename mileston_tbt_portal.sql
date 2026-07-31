@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 12, 2026 at 08:53 PM
+-- Generation Time: Jul 31, 2026 at 03:58 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.30
 
@@ -38,10 +38,17 @@ CREATE TABLE `configuration` (
 --
 
 INSERT INTO `configuration` (`id`, `name`, `value`) VALUES
-(1, 'bunny_ready', 'true'),
+(1, 'bunny_ready', '1'),
 (2, 'bunny_pullzone', 'https://vz-d5dd88c0-b28.b-cdn.net'),
 (3, 'bunny_cdntoken', '62674427-5592-4d34-96e4-298271767195'),
-(4, 'bunny_accesskey', 'e07608c9-6542-411a-95332721699e-e051-41ce');
+(4, 'bunny_accesskey', 'e07608c9-6542-411a-95332721699e-e051-41ce'),
+(5, 'timezone', 'Asia/Karachi'),
+(6, 'date_seperator', '-'),
+(7, 'unit_label', 'Chapter'),
+(8, 'organization_name', 'The Bulls Trading'),
+(9, 'organization_url', 'https://thebullstrading.com'),
+(10, 'review_mode', '1'),
+(11, 'max_units', '10');
 
 -- --------------------------------------------------------
 
@@ -78,15 +85,21 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
   `role` int NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `pfp` varchar(1024) NOT NULL,
+  `occupation` varchar(1024) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `address` varchar(1024) NOT NULL,
+  `pwd_timestamp` varchar(1024) NOT NULL,
+  `preference_theme` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `status`, `role`, `password`) VALUES
-(1, 'Steven Raj', 'steven.raj@euromets.com', '2', 1, '(Donkey100#)');
+INSERT INTO `users` (`id`, `name`, `email`, `status`, `role`, `password`, `pfp`, `occupation`, `phone`, `address`, `pwd_timestamp`, `preference_theme`) VALUES
+(1, 'Harris Shahryar', 'steven.raj@euromets.com', '2', 1, 'noorula1n', 'data/user_data/pfp_a.jfif', 'Commercial Executive', '+923161075498', 'House No. R143, Block A, Bagh E Malir, Karachi', '16-07-2026', 'dark');
 
 -- --------------------------------------------------------
 
@@ -98,16 +111,15 @@ CREATE TABLE `video_logs` (
   `id` int NOT NULL,
   `email` varchar(255) NOT NULL,
   `video_id` varchar(255) NOT NULL,
-  `watched_ranges` json NOT NULL,
-  `duration` varchar(255) NOT NULL
+  `watched_ranges` json NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `video_logs`
 --
 
-INSERT INTO `video_logs` (`id`, `email`, `video_id`, `watched_ranges`, `duration`) VALUES
-(1, 'steven.raj@euromets.com', '2', '[[0.083111, 1.624292], [1.684012, 7.740347], [20.206212, 76.897261], [141.558819, 561.104526]]', '563.399375');
+INSERT INTO `video_logs` (`id`, `email`, `video_id`, `watched_ranges`) VALUES
+(1, 'steven.raj@euromets.com', '1', '[[0.033288, 2.380712], [31.374813, 33.166509], [88.993967, 129.419496], [251.590485, 254.203], [254.731028, 265.959626]]');
 
 --
 -- Indexes for dumped tables
@@ -117,12 +129,6 @@ INSERT INTO `video_logs` (`id`, `email`, `video_id`, `watched_ranges`, `duration
 -- Indexes for table `configuration`
 --
 ALTER TABLE `configuration`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `content`
---
-ALTER TABLE `content`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -147,13 +153,7 @@ ALTER TABLE `video_logs`
 -- AUTO_INCREMENT for table `configuration`
 --
 ALTER TABLE `configuration`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `content`
---
-ALTER TABLE `content`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -165,7 +165,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `video_logs`
 --
 ALTER TABLE `video_logs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

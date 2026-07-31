@@ -23,32 +23,16 @@ includeSnippet("<script src='https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.1
     <tr>
       <th><abbr title="Position">Pos</abbr></th>
       <th>Full Name</th>
-      <th><abbr title="Played">Email</abbr></th>
+      <th><abbr title="Email Address">Email</abbr></th>
       <th>Phone</th>
-      <th><abbr title="Drawn" hx-get="../api/settings.php?configuration=unit_label" hx-trigger="load"></abbr></th>
-      <th><abbr title="Lost">L</abbr></th>
-      <th><abbr title="Goals for">GF</abbr></th>
-      <th><abbr title="Goals against">GA</abbr></th>
-      <th><abbr title="Goal difference">GD</abbr></th>
-      <th><abbr title="Points">Pts</abbr></th>
-      <th>Qualification or relegation</th>
+      <th><abbr title="Unit Label" hx-get="../api/settings.php?configuration=unit_label" hx-trigger="load"></abbr></th>
+        <th>Occupation</th>
+      <th>Password</th>
+      <th>Availability</th>
+      <th>Street Address</th>
+      <th>Last Logged IP</th>
     </tr>
   </thead>
-  <tfoot>
-    <tr>
-      <th><abbr title="Position">Pos</abbr></th>
-      <th>Team</th>
-      <th><abbr title="Played">Pld</abbr></th>
-      <th><abbr title="Won">W</abbr></th>
-      <th><abbr title="Drawn">D</abbr></th>
-      <th><abbr title="Lost">L</abbr></th>
-      <th><abbr title="Goals for">GF</abbr></th>
-      <th><abbr title="Goals against">GA</abbr></th>
-      <th><abbr title="Goal difference">GD</abbr></th>
-      <th><abbr title="Points">Pts</abbr></th>
-      <th>Qualification or relegation</th>
-    </tr>
-  </tfoot>
   <tbody>
     <tr>
       <th>1</th>
@@ -62,47 +46,44 @@ includeSnippet("<script src='https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.1
       </td>
       <td>38</td>
       <td>23</td>
-      <td>12</td>
+      
+      
+      <td>
+
+      <div class="dropdown">
+  <div class="dropdown-trigger">
+    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+      <span>1</span>
+      <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </div>
+  <div class="dropdown-menu" id="dropdown-menu" role="menu">
+    <div class="dropdown-content">
+      <a class="dropdown-item"> Dropdown item </a>
+      <a class="dropdown-item"> Other dropdown item </a>
+      <a class="dropdown-item is-active"> Active dropdown item </a>
+      <hr class="dropdown-divider" />
+      <a href="#" class="dropdown-item"> With a divider </a>
+    </div>
+  </div>
+</div>
+
+
+      </td>
+      
+      
+      
       <td>3</td>
       <td>68</td>
       <td>36</td>
-      <td>+32</td>
-      <td>81</td>
+      <td>House No. R143, Block A, Bagh E Malir, Karachi</td>
       <td>
-        Qualification for the
-        <a
-          href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage"
-          title="2016–17 UEFA Champions League"
-          >Champions League group stage</a
-        >
+       192.168.0.1
       </td>
     </tr>
-    <tr>
-      <th>2</th>
-      <td>
-        <a
-          href="https://en.wikipedia.org/wiki/Arsenal_F.C."
-          title="Arsenal F.C."
-          >Arsenal</a
-        >
-      </td>
-      <td>38</td>
-      <td>20</td>
-      <td>11</td>
-      <td>7</td>
-      <td>65</td>
-      <td>36</td>
-      <td>+29</td>
-      <td>71</td>
-      <td>
-        Qualification for the
-        <a
-          href="https://en.wikipedia.org/wiki/2016%E2%80%9317_UEFA_Champions_League#Group_stage"
-          title="2016–17 UEFA Champions League"
-          >Champions League group stage</a
-        >
-      </td>
-    </tr>
+
   </tbody>
 </table>
 
@@ -112,5 +93,6 @@ includeSnippet("<script src='https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.1
 
 </div>
 
+<?php include "footer.php"; ?>
 </body>
 </html>

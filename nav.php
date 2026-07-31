@@ -29,7 +29,7 @@
 
 
 <!---- Top Dynamic Navigation ---->
-
+<!----- Toggle Dark Mode Snippet START ---->
 <script>
 const checkbox = document.getElementById("themeToggle");
 
@@ -55,3 +55,4 @@ checkbox.addEventListener("change", () => {
   }
 });
 </script>
+<!----- Toggle Dark Mode Snippet END ---->
