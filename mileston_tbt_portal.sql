@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 31, 2026 at 03:58 PM
+-- Generation Time: Aug 02, 2026 at 10:43 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.30
 
@@ -38,17 +38,18 @@ CREATE TABLE `configuration` (
 --
 
 INSERT INTO `configuration` (`id`, `name`, `value`) VALUES
-(1, 'bunny_ready', '1'),
+(1, 'bunny_ready', '0'),
 (2, 'bunny_pullzone', 'https://vz-d5dd88c0-b28.b-cdn.net'),
 (3, 'bunny_cdntoken', '62674427-5592-4d34-96e4-298271767195'),
 (4, 'bunny_accesskey', 'e07608c9-6542-411a-95332721699e-e051-41ce'),
 (5, 'timezone', 'Asia/Karachi'),
 (6, 'date_seperator', '-'),
 (7, 'unit_label', 'Chapter'),
-(8, 'organization_name', 'The Bulls Trading'),
+(8, 'organization_name', 'Ainove'),
 (9, 'organization_url', 'https://thebullstrading.com'),
 (10, 'review_mode', '1'),
-(11, 'max_units', '10');
+(11, 'max_units', '10'),
+(12, 'external_redirects', 'https://president.com,https://www.pornhub.com,letsenter.com,,wtf.com,,www.shit.com');
 
 -- --------------------------------------------------------
 
@@ -153,7 +154,7 @@ ALTER TABLE `video_logs`
 -- AUTO_INCREMENT for table `configuration`
 --
 ALTER TABLE `configuration`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -92,10 +92,58 @@ function is_safeInput($input, $type = 'text') {
         case 'phone':
             return preg_match("/^[0-9\s\+\-\(\)]+$/", $input);
 
+        case 'url':
+            return filter_var($input, FILTER_VALIDATE_URL) !== false;
+
+        case 'int':
+return filter_var($input, FILTER_VALIDATE_INT, [
+    'options' => ['min_range' => 0]
+]) !== false;
+
         default:
             return preg_match("/^[a-zA-Z0-9\s,.!?'-]+$/", $input);
     }
 }
+
+
+
+// Is Valid Domain checks for Full URLs
+
+function isValidPublicUrl(string $url): bool
+{
+    if (!filter_var($url, FILTER_VALIDATE_URL)) {
+        return false;
+    }
+
+    $parts = parse_url($url);
+
+    // Only allow HTTP/HTTPS
+    if (!in_array($parts['scheme'] ?? '', ['http', 'https'], true)) {
+        return false;
+    }
+
+    $host = $parts['host'] ?? '';
+
+    // Require something like example.com or sub.example.co.uk
+    if (!preg_match('/^(?:[a-z0-9-]+\.)+[a-z]{2,63}$/i', $host)) {
+        return false;
+    }
+
+    return true;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Issues Notifications
 function issue_notification($type, $msg) {
