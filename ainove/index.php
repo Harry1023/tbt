@@ -21,7 +21,7 @@ includeSnippet("<script src='https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.1
 <table class="table">
   <thead>
     <tr>
-      <th><abbr title="Position">Pos</abbr></th>
+      <th><abbr title="Database Registration">Id</abbr></th>
       <th>Full Name</th>
       <th><abbr title="Email Address">Email</abbr></th>
       <th>Phone</th>
@@ -33,7 +33,7 @@ includeSnippet("<script src='https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.1
       <th>Last Logged IP</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody hx-get="../api/users.php" hx-trigger="load">
     <tr>
       <th>1</th>
       <td>

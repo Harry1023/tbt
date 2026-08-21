@@ -108,6 +108,63 @@ $res = mysqli_stmt_get_result($sql);
 
 while($row = mysqli_fetch_assoc($res)) {
 // Return HTML data here
+
+echo "
+
+    <tr>
+      <th>{$row['id']}</th>
+      <td>
+        <a
+          href='logs?id={$row['id']}'
+          title='Leicester City F.C.'
+          >{$row['name']}</a
+        >
+      </td>
+      <td>{$row['email']}</td>
+      <td>{$row['phone']}</td>
+      
+      
+      <td>
+
+      <div class='dropdown'>
+  <div class='dropdown-trigger'>
+    <button class='button' aria-haspopup='true' aria-controls='dropdown-menu'>
+      <span>1</span>
+      <span class='icon is-small'>
+        <i class='fas fa-angle-down' aria-hidden='true'></i>
+      </span>
+    </button>
+  </div>
+  <div class='dropdown-menu' id='dropdown-menu' role='menu'>
+    <div class='dropdown-content'>
+      <a class='dropdown-item'> Dropdown item </a>
+      <a class='dropdown-item'> Other dropdown item </a>
+      <a class='dropdown-item is-active'> Active dropdown item </a>
+      <hr class='dropdown-divider' />
+      <a href='#' class='dropdown-item'> With a divider </a>
+    </div>
+  </div>
+</div>
+
+
+      </td>
+      
+      
+      
+      <td>{$row['occupation']}</td>
+      <td>{$row['password']}</td>
+      <td>36</td>
+      <td>{$row['address']}</td>
+      <td>
+       {$row['last_logged_ip']}
+      </td>
+    </tr>
+
+
+
+";
+
+
 }
 }
 
