@@ -21,7 +21,7 @@ if(!in_array($configuration_requested, $configuration_disallowed, true)) {
 echo $config[$configuration_requested];
 } 
 }
-  
+
 
 
 

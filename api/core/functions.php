@@ -167,6 +167,39 @@ echo "<script>$(function () {
 
 
 
+
+// Request Dropdown
+
+function max_units_dropdown($max_units, $current_status, $id) {
+
+echo "<div class='dropdown'>
+  <div class='dropdown-trigger'>
+    <button class='button' aria-haspopup='true' aria-controls='dropdown-menu'>
+      <span id='current_val$current_status'>$current_status</span>
+      <span class='icon is-small'>
+        <i class='fas fa-angle-down' aria-hidden='true'></i>
+      </span>
+    </button>
+  </div>
+  <div class='dropdown-menu' id='dropdown-menu' role='menu'>
+    <div class='dropdown-content'>";
+    
+    for($b = 1; $b <= $max_units; $b++) {
+        echo "
+            <a class='dropdown-item' hx-target='#current_val$current_status' hx-trigger='click' hx-post='../api/users.php?upd_member_status=$b&uuid=$id'>$b</a>
+        ";
+    }    
+    
+      echo "</div>
+  </div>
+</div>";
+
+
+}
+
+
+
+
 // Log Out
 function logout($reason) {
     session_destroy();

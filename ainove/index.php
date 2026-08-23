@@ -8,7 +8,7 @@ includeSnippet("<script src='https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.1
 
 <?php include "aside.php"; ?>
 
-<div class="column">
+<div class="column" style="container-type: inline-size;">
 
 
 <?php include "nav.php"; ?>
@@ -17,7 +17,8 @@ includeSnippet("<script src='https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.1
 <div class="container is-fluid">
 
 <h1 class="is-size-4 mt-2"><strong>Dashboard</strong></h1>
-
+<div class="table-container" style=" width: 100cqw;
+  max-width: 100cqw; height: 90vh;">
 <table class="table">
   <thead>
     <tr>
@@ -33,59 +34,8 @@ includeSnippet("<script src='https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.1
       <th>Last Logged IP</th>
     </tr>
   </thead>
-  <tbody hx-get="../api/users.php" hx-trigger="load">
-    <tr>
-      <th>1</th>
-      <td>
-        <a
-          href="https://en.wikipedia.org/wiki/Leicester_City_F.C."
-          title="Leicester City F.C."
-          >Leicester City</a
-        >
-        <strong>(C)</strong>
-      </td>
-      <td>38</td>
-      <td>23</td>
-      
-      
-      <td>
-
-      <div class="dropdown">
-  <div class="dropdown-trigger">
-    <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-      <span>1</span>
-      <span class="icon is-small">
-        <i class="fas fa-angle-down" aria-hidden="true"></i>
-      </span>
-    </button>
-  </div>
-  <div class="dropdown-menu" id="dropdown-menu" role="menu">
-    <div class="dropdown-content">
-      <a class="dropdown-item"> Dropdown item </a>
-      <a class="dropdown-item"> Other dropdown item </a>
-      <a class="dropdown-item is-active"> Active dropdown item </a>
-      <hr class="dropdown-divider" />
-      <a href="#" class="dropdown-item"> With a divider </a>
-    </div>
-  </div>
-</div>
-
-
-      </td>
-      
-      
-      
-      <td>3</td>
-      <td>68</td>
-      <td>36</td>
-      <td>House No. R143, Block A, Bagh E Malir, Karachi</td>
-      <td>
-       192.168.0.1
-      </td>
-    </tr>
-
-  </tbody>
-</table>
+  <tbody hx-get="../api/users.php" hx-trigger="load"></tbody>
+</table></div>
 
 </div>
 
