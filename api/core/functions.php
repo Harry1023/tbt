@@ -170,12 +170,12 @@ echo "<script>$(function () {
 
 // Request Dropdown
 
-function max_units_dropdown($max_units, $current_status, $id) {
+function max_units_dropdown($max_units, $current_status, $id, $external_redirects) {
 
 echo "<div class='dropdown'>
   <div class='dropdown-trigger'>
     <button class='button' aria-haspopup='true' aria-controls='dropdown-menu'>
-      <span id='current_val$current_status'>$current_status</span>
+      <span id='current_val$id'>$current_status</span>
       <span class='icon is-small'>
         <i class='fas fa-angle-down' aria-hidden='true'></i>
       </span>
@@ -186,9 +186,22 @@ echo "<div class='dropdown'>
     
     for($b = 1; $b <= $max_units; $b++) {
         echo "
-            <a class='dropdown-item' hx-target='#current_val$current_status' hx-trigger='click' hx-post='../api/users.php?upd_member_status=$b&uuid=$id'>$b</a>
+            <a class='dropdown-item' hx-target='#current_val$id' hx-trigger='click' hx-post='../api/users.php?upd_member_status=$b&uuid=$id'>$b</a>
         ";
     }    
+
+
+    echo " <hr class='dropdown-divider' />";
+
+
+$exr = explode(",",$external_redirects);
+
+    foreach($exr as $redirect) {
+        echo "
+                    <a class='dropdown-item' hx-target='#current_val$id' hx-trigger='click' hx-post='../api/users.php?upd_member_status=$redirect&uuid=$id'>$redirect</a>
+        ";
+    }
+
     
       echo "</div>
   </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 21, 2026 at 03:45 PM
+-- Generation Time: Aug 25, 2026 at 03:40 PM
 -- Server version: 8.4.3
 -- PHP Version: 8.3.30
 
@@ -93,6 +93,7 @@ CREATE TABLE `users` (
   `address` varchar(1024) NOT NULL,
   `last_logged_ip` varchar(1024) NOT NULL,
   `pwd_timestamp` varchar(1024) NOT NULL,
+  `created_at` varchar(1024) NOT NULL,
   `preference_theme` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -100,10 +101,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `status`, `role`, `password`, `pfp`, `occupation`, `phone`, `address`, `last_logged_ip`, `pwd_timestamp`, `preference_theme`) VALUES
-(1, 'Harris Shahryar', 'steven.raj@euromets.com', '2', 2, 'noorula1n', 'data/user_data/pfp_a.jfif', 'Commercial Executive', '+923161075498', 'House No. R143, Block A, Bagh E Malir, Karachi', '192.168.4.4', '16-07-2026', 'dark'),
-(2, 'Umar Khalid Khan', 'umarkhalid.1204@hotmail.com', '4', 1, '(GrokX100#)', 'data/user_data/pfp_a.jfif', 'CEO', '+923342049204', 'Unknown', '192.168.2.1', '16-07-2026', ''),
-(3, 'Harris Shahryar', 'webzed1@gmail.com', '4', 1, '(GrokX100#)', 'data/user_data/pfp_a.jfif', 'CTO', '+923342049204', 'Unknown', '192.168.2.1', '16-07-2026', '');
+INSERT INTO `users` (`id`, `name`, `email`, `status`, `role`, `password`, `pfp`, `occupation`, `phone`, `address`, `last_logged_ip`, `pwd_timestamp`, `created_at`, `preference_theme`) VALUES
+(1, 'Harris Shahryar', 'steven.raj@euromets.com', '2', 2, 'noorula1n', 'data/user_data/pfp_a.jfif', 'Commercial Executive', '+923161075498', 'House No. R143, Block A, Bagh E Malir, Karachi', '192.168.4.4', '16-07-2026', '', 'dark'),
+(2, 'Umar Khalid Khan', 'umarkhalid.1204@hotmail.com', 'https://crimson.com', 1, '(GrokX100#)', 'data/user_data/pfp_a.jfif', 'CEO', '+923342049204', 'Unknown', '192.168.2.1', '16-07-2026', '', ''),
+(3, 'Harris Shahryar', 'webzed1@gmail.com', '10', 1, '(GrokX100#)', 'data/user_data/pfp_a.jfif', 'CTO', '+923342049204', 'Unknown', '192.168.2.1', '16-07-2026', '', '');
 
 -- --------------------------------------------------------
 

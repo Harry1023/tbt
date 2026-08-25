@@ -34,7 +34,7 @@ includeSnippet("<script src='https://cdnjs.cloudflare.com/ajax/libs/hls.js/0.5.1
       <th>Last Logged IP</th>
     </tr>
   </thead>
-  <tbody hx-get="../api/users.php" hx-trigger="load"></tbody>
+  <tbody id="membersTable" hx-get="../api/users.php" hx-trigger="load"></tbody>
 </table></div>
 
 </div>

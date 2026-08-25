@@ -45,15 +45,58 @@ if(isset($_GET['filter_status'])) {
 
 if(isset($_GET['search'])) {
     if(is_authorized(2) || is_authorized(3)) {
-        $term = $_GET['search'];
+        $term = "%" . $_GET['search'] . "%";
 
-        $sql = mysqli_prepare(con, "SELECT * FROM `users` WHERE (name LIKE ? OR email LIKE ? OR phone LIKE ?)");
-        mysqli_stmt_bind_param($sql, "s", $term);
+        $sql = mysqli_prepare(con, "SELECT * FROM `users` WHERE (name LIKE ? OR email LIKE ? OR phone LIKE ?) AND role < ?");
+        mysqli_stmt_bind_param($sql, "ssss", $term, $term, $term, $_SESSION['role']);
         mysqli_stmt_execute($sql);
         $res = mysqli_stmt_get_result($sql);
         while($row = mysqli_fetch_assoc($res)) {
             // Enter HTML return for Search
-        }
+        
+        echo "
+
+    <tr>
+      <th>{$row['id']}</th>
+      <td>
+        <a
+          href='logs?id={$row['id']}'
+          title='Open Logs for {$row['name']}'
+          >{$row['name']}</a
+        >
+      </td>
+      <td>{$row['email']}</td>
+      <td>{$row['phone']}</td>
+      
+      
+      <td>
+";
+$id = $row['id'];
+$max_units = $config['max_units'];
+$external_redirects = $config['external_redirects'];
+$current_status = $row['status'];
+max_units_dropdown($max_units, $current_status, $id, $external_redirects);
+
+
+echo "
+      </td>
+      
+      
+      
+      <td>{$row['occupation']}</td>
+      <td>{$row['password']}</td>
+      <td>36</td>
+      <td>{$row['address']}</td>
+      <td>
+       {$row['last_logged_ip']}
+      </td>
+    </tr>
+
+
+
+";
+
+            }
 
     }
 }
@@ -95,15 +138,16 @@ echo "
 
 
 
+
 }
 }
 
 // Returns all Users with Access below Requestee 
 
-else {
+else if(!isset($_GET['search'])) {
 
 if(is_authorized(2) || is_authorized(3)) {
-$sql = mysqli_prepare(con, "SELECT * FROM users WHERE role < ?");
+$sql = mysqli_prepare(con, "SELECT * FROM users WHERE role < ? ORDER BY id DESC LIMIT 75");
 mysqli_stmt_bind_param($sql, "i", $_SESSION['role']);
 mysqli_stmt_execute($sql);
 $res = mysqli_stmt_get_result($sql);
@@ -118,7 +162,7 @@ echo "
       <td>
         <a
           href='logs?id={$row['id']}'
-          title='Leicester City F.C.'
+          title='Open Logs for {$row['name']}'
           >{$row['name']}</a
         >
       </td>
@@ -130,8 +174,9 @@ echo "
 ";
 $id = $row['id'];
 $max_units = $config['max_units'];
+$external_redirects = $config['external_redirects'];
 $current_status = $row['status'];
-max_units_dropdown($max_units, $current_status, $id);
+max_units_dropdown($max_units, $current_status, $id, $external_redirects);
 
 
 echo "

@@ -52,6 +52,7 @@ echo "
 
 
 if(isset($_GET['delete_redirect']) && is_safeInput($_GET['delete_redirect'], 'url')) {
+if(is_authorized(3)) {
 
 $external_redirects = explode(',',$config['external_redirects']);
 
@@ -62,7 +63,7 @@ $new_external_redirects = implode(',',$urls);
 
 $sql = mysqli_prepare(con, "UPDATE `configuration` SET value = ? WHERE name = 'external_redirects'");
 mysqli_stmt_bind_param($sql, 's', $new_external_redirects);
-mysqli_stmt_execute($sql);
+mysqli_stmt_execute($sql);}
 }
 
 
@@ -72,6 +73,7 @@ break;
 CASE 'POST':
 
 if(isset($_POST['update_configuration'])) {
+  if(is_authorized(3)) {
 $table_posted = [];
 $valueName = [];
 $valueData = [];
@@ -127,7 +129,7 @@ if (in_array($newLink, $existingURLs, true)) {
   $sql = mysqli_prepare(con, "UPDATE configuration SET value = ? WHERE name = 'external_redirects'");
   mysqli_stmt_bind_param($sql, 's', $URLs);
   mysqli_stmt_execute($sql);
-  
+}
 }
 
 break;

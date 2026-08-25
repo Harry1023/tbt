@@ -7,7 +7,7 @@
 
  <div class="field has-addons">
         <p class="control">
-          <input class="input" type="text" placeholder="Search a Member" />
+          <input class="input" type="text" name="search" placeholder="Search a Member" hx-get="../api/users.php" hx-trigger="keyup" hx-swap='innerHTML' hx-target="#membersTable"/>
         </p>
         <p class="control">
           <button class="button">Search</button>
