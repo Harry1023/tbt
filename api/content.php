@@ -62,7 +62,14 @@ if(is_authorized(1) || is_authorized(2) || is_authorized(3)) {
     $param = $_SESSION['status'];
 
 
-$sql = mysqli_prepare(con,"SELECT * FROM `content` WHERE file_status = ?");
+$review_mode = $config['review_mode'];
+
+if($review_mode == "0") {
+$sql = mysqli_prepare(con,"SELECT * FROM `content` WHERE file_status = ?");}
+
+else {$sql = mysqli_prepare(con,"SELECT * FROM `content` WHERE file_status <= ?");}
+
+
 mysqli_stmt_bind_param($sql, "i", $param);
 mysqli_stmt_execute($sql);
 $res = mysqli_stmt_get_result($sql);
@@ -104,12 +111,13 @@ $file_uid = $row['uid'];
 
 
     }
-    $apiBunny_pull_zone = "https://vz-d5dd88c0-b28.b-cdn.net";
+    $apiBunny_cdnToken = $config['bunny_cdntoken'];
+    $apiBunny_pull_zone = $config['bunny_pullzone'];
     $apiBunny_hrefwithZone = $apiBunny_pull_zone . '/' . $file_uid . '/playlist.m3u8';
 
 $temp = sign_bcdn_url(
     $apiBunny_hrefwithZone,
-    '62674427-5592-4d34-96e4-298271767195',
+    $apiBunny_cdnToken,
     3600,                   // expiration_time
     '',                     // user_ip
     true,                   // is_directory
